@@ -1,0 +1,179 @@
+<div class="container">
+    <form>
+        <br>
+        <br>
+
+        <div class="card text-center mt-5">
+            <div class="card-header">
+                Ensino Superior - Faculdades e Instituições
+            </div>
+            <div class="card-body">
+
+                <h5 class="card-title">Encontre as instituições de Ensino Superior perfeitas para o seu objetivo </h5>
+                <p class="card-text">Universidade - (Curso, preço, horário, localização)</p>
+                <a href="/category" class="btn btn-primary">Acessar outras categorias</a>
+            </div>
+            <div class="card-footer text-muted">
+                Preencha o formulário com suas preferencias
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="form-group mb-5 col-md-2">
+                <label for="exampleFormControlSelect1">Estado</label>
+                <!-- <mat-form-field>
+            <mat-select (selectionChange)="loadCities()" [(ngModel)]="teste">
+                <mat-option *ngFor="let s of states" [value]="s" [(ngModel)]="teste">
+                
+                </mat-option>
+            </mat-select>
+            </mat-form-field> -->
+
+                <select class="form-control" (change)="loadCities()" [(ngModel)]="searchForm.uf" name="state">
+                    <option *ngFor="let s of dataForm.states" [value]="s">{{s}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-5 col-md-4">
+                <label for="exampleFormControlSelect1">Cidade</label>
+                <select class="form-control" [(ngModel)]="searchForm.city" name="city">
+                    <option *ngFor="let c of dataForm.cities" [value]="c">{{c}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-5 col-md-2">
+                <label for="exampleFormControlSelect1">Tipo Instituição</label>
+                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="searchForm.type" name="type">
+                    <option>Particular</option>
+                    <option>Publica</option>
+                </select>
+            </div>
+            <div class="form-group mb-5 col-md-2">
+                <label for="exampleFormControlSelect1">Nível</label>
+                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="searchForm.level" name="level">
+                    <option>Graduação</option>
+                    <option>Mestrado</option>
+                    <option>Doutorado</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-5 col-md-2">
+                <label for="exampleFormControlSelect1">Turno</label>
+                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="searchForm.shift" name="shift">
+                    <option>Matutino</option>
+                    <option>Vespertino</option>
+                    <option>Noturno</option>
+                    <option>Integral</option>
+                    <option>á distancia</option>
+                </select>
+            </div>
+            <div class="form-group mb-5 col-md-2">
+                <label for="exampleFormControlSelect1">Nota MEC</label>
+                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="searchForm.grade" name="grade">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-5 col-md-4">
+                <label for="exampleFormControlSelect1">Área</label>
+                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="searchForm.field"
+                    (change)="loadCourses()" name="field">
+                    <option>Tecnologia da Informação - sistemas - computação</option>
+                    <option>Direito</option>
+                    <option>Ciências da Natureza - Biologia</option>
+                    <option>Administração</option>
+                    <option>Artes</option>
+                    <option>Economia - Ciências Econômicas</option>
+                    <option>Educação Física</option>
+                    <option>Engenharia Civil</option>
+                    <option>Engenharia de Produção</option>
+                    <option>Engenharia Elétrica</option>
+                    <option>Filosofia</option>
+                    <option>Física</option>
+                    <option>Geografia</option>
+                    <option>História</option>
+                    <option>Jornalismo</option>
+                    <option>Letras</option>
+                    <option>Matemática</option>
+                    <option>Pedagogia</option>
+                    <option>Relações Pública</option>
+                    <option>Nutrição</option>
+                    <option>Química</option>
+                    <option>Arquivologia</option>
+                    <option>Biblioteconomia</option>
+                    <option>Medicina</option>
+                    <option>Música</option>
+                    <option>Pedagogia</option>
+                    <option>Teatro</option>
+                    <option>Desenho</option>
+                </select>
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlSelect2">Cursos</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2" [(ngModel)]="searchForm.course"
+                    name="course">
+                    <option *ngFor="let c of dataForm.coursesNames" [ngValue]="c">{{c}}</option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <button class="btn btn-primary col-md-3 float-left mt-5" style="float: right;"
+                    (click)="processeSearchForm()">Buscar</button>
+            </div>
+            <div class="row">
+                <div *ngFor="let r of resultData" class="col-md-4 mt-2">
+                <div class="twPc-div">
+                    <a class="twPc-bg twPc-block"></a>
+                    <div>
+                        <a title="Mert S. Kaplan" href="https://twitter.com/mertskaplan" class="twPc-avatarLink">
+                            <img alt="Mert S. Kaplan"
+                                src="https://image.flaticon.com/icons/png/512/89/89037.png"
+                                class="twPc-avatarImg">
+                        </a>
+
+                        <div class="twPc-divUser">
+                            <div class="twPc-divName">
+                                <span> {{ r.courseName }}</span>
+                            </div>
+                            <span>
+                                <span>{{ r.collegeName }}</span>
+                            </span>
+                        </div>
+
+                        <div class="twPc-divStats">
+                            <ul class="twPc-Arrange">
+                                <li class="twPc-ArrangeSizeFit">
+                                    <a href="https://twitter.com/mertskaplan" title="9.840 Tweet">
+                                        <span class="twPc-StatValue">Aderência: {{ r.perc | number : '1.2-2' }}%</span>
+                                        <span class="twPc-StatLabel twPc-block">{{ r.city }}</span>
+                                        <span class="twPc-StatLabel twPc-block">{{ r.level }}</span>
+                                        
+                                    </a>
+                                </li>
+                                <li class="twPc-ArrangeSizeFit">
+                                    <a href="https://twitter.com/mertskaplan/following" title="885 Following">
+                                        <span class="twPc-StatValue">-----------</span>
+                                        <span class="twPc-StatLabel twPc-block">{{ r.state }}</span>
+                                        <span class="twPc-StatLabel twPc-block">{{ r.shift }}</span>
+                                       
+                                    </a>
+                                </li>
+                                <li class="twPc-ArrangeSizeFit">
+                                    <a href="https://twitter.com/mertskaplan/followers" title="1.810 Followers">
+                                        <span class="twPc-StatValue">-------------</span>
+                                        <span class="twPc-StatLabel twPc-block">{{ r.type }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
+</div>
